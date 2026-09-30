@@ -1,0 +1,95 @@
+/* ==========================================================================
+   Ozituma dashboards — token proposal
+   Lift this file directly into apps/web/app/globals.css.
+
+   Rules honoured here:
+   - Colours in oklch().
+   - The six admin-overridable properties (--ink, --paper, --accent,
+     --header-bg, --footer-bg, --link) and --wrap are DECLARED but never
+     relied upon literally anywhere else: every dashboard colour is derived
+     from them with color-mix(), so a re-themed palette carries through.
+   - No fixed page width is assumed; --wrap governs measure.
+   ========================================================================== */
+
+:root {
+  /* ---- admin-overridable (existing contract, unchanged names) ---------- */
+  --ink: oklch(0.24 0.02 65);
+  --paper: oklch(0.985 0.006 85);
+  --accent: oklch(0.52 0.13 45);          /* clay/ochre warmth */
+  --header-bg: oklch(0.26 0.02 60);
+  --footer-bg: oklch(0.26 0.02 60);
+  --link: oklch(0.45 0.11 250);
+  --wrap: 68rem;
+
+  /* ---- existing tokens, kept ------------------------------------------ */
+  --ink-soft: color-mix(in oklab, var(--ink) 72%, var(--paper));
+  --ink-faint: color-mix(in oklab, var(--ink) 48%, var(--paper));
+  --paper-raised: color-mix(in oklab, var(--paper) 94%, var(--ink));
+  --line: color-mix(in oklab, var(--ink) 14%, var(--paper));
+
+  --indigo: oklch(0.45 0.11 250);
+  --ochre: oklch(0.68 0.12 75);
+  --clay: oklch(0.55 0.13 40);
+  --green: oklch(0.52 0.1 155);
+  --red: oklch(0.52 0.16 25);
+
+  --radius-sm: 3px;
+  --radius: 6px;
+  --radius-lg: 12px;
+
+  --shadow-sm: 0 1px 2px color-mix(in oklab, var(--ink) 10%, transparent);
+  --shadow: 0 2px 10px color-mix(in oklab, var(--ink) 12%, transparent);
+
+  --font-body: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Libre Baskerville", Georgia, "Times New Roman", serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* ---- NEW: dashboard surfaces ---------------------------------------- */
+  /* Dark chrome for both dashboards, derived from --header-bg so a
+     re-theme moves the sidebar with everything else. */
+  --chrome: var(--header-bg);
+  --chrome-raised: color-mix(in oklab, var(--chrome) 88%, white);
+  --chrome-ink: color-mix(in oklab, white 88%, var(--chrome));
+  --chrome-ink-soft: color-mix(in oklab, white 60%, var(--chrome));
+  --chrome-line: color-mix(in oklab, white 16%, var(--chrome));
+
+  /* Dashboard A is warmer (paper), Dashboard B is cooler and flatter. */
+  --canvas-a: color-mix(in oklab, var(--paper) 97%, var(--ochre));
+  --canvas-b: color-mix(in oklab, var(--paper) 96%, var(--ink));
+
+  /* ---- NEW: state semantics, shared by A and B ------------------------ */
+  --state-draft: var(--ink-faint);
+  --state-pending: var(--ochre);
+  --state-accepted: var(--green);
+  --state-refused: var(--red);
+  --state-published: var(--indigo);
+
+  --tint-pending: color-mix(in oklab, var(--ochre) 16%, var(--paper));
+  --tint-accepted: color-mix(in oklab, var(--green) 14%, var(--paper));
+  --tint-refused: color-mix(in oklab, var(--red) 13%, var(--paper));
+  --tint-info: color-mix(in oklab, var(--indigo) 12%, var(--paper));
+
+  /* ---- NEW: spacing rhythm (4px base, shared by both dashboards) ------ */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: 3rem;
+
+  /* ---- NEW: type scale (shared; B simply uses the lower steps) -------- */
+  --t-xs: 0.75rem;
+  --t-sm: 0.8125rem;
+  --t-base: 0.9375rem;
+  --t-md: 1.0625rem;
+  --t-lg: 1.375rem;
+  --t-xl: 1.875rem;
+  --t-2xl: 2.5rem;
+
+  /* ---- NEW: focus ----------------------------------------------------- */
+  --focus: 0 0 0 2px var(--paper), 0 0 0 4px var(--accent);
+
+  /* ---- NEW: density knob. A = comfortable, B = instrument panel ------- */
+  --row-pad: var(--s-3);
+}
