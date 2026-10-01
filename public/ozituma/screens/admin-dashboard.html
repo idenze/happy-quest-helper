@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard — Ozituma administration</title>
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="../styles/dashboard.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="shell shell--admin">
+
+  <!-- COMPONENT: sidenav (Dashboard B). Same component, denser contents. -->
+  <nav class="sidenav" aria-label="Administration">
+    <a class="sidenav__brand" href="../index.html">
+      <span class="sidenav__mark">Ọzịtụma</span>
+      <span class="sidenav__context">Admin</span>
+    </a>
+
+    <ul class="sidenav__list">
+      <li><a class="sidenav__link" href="admin-dashboard.html" aria-current="page">Dashboard</a></li>
+    </ul>
+
+    <details class="sidenav__group" open>
+      <summary>The record</summary>
+      <ul class="sidenav__list">
+        <li><a class="sidenav__link" href="#">Words <span class="sidenav__count">14,208</span></a></li>
+        <li><a class="sidenav__link" href="#">Names <span class="sidenav__count">3,117</span></a></li>
+        <li><a class="sidenav__link" href="#">Clans <span class="sidenav__count">612</span></a></li>
+        <li><a class="sidenav__link" href="#">Proverbs <span class="sidenav__count">1,044</span></a></li>
+        <li><a class="sidenav__link" href="#">Recordings <span class="sidenav__count">287</span></a></li>
+        <li><a class="sidenav__link" href="#">Submissions <span class="sidenav__count">12</span></a></li>
+      </ul>
+    </details>
+
+    <details class="sidenav__group" open>
+      <summary>People</summary>
+      <ul class="sidenav__list">
+        <li><a class="sidenav__link" href="admin-users.html">Users <span class="sidenav__count">486</span></a></li>
+        <li><a class="sidenav__link" href="#">Add account</a></li>
+        <li><a class="sidenav__link sidenav__link--review" href="review.html">Review queue <span class="sidenav__count">12</span></a></li>
+      </ul>
+    </details>
+
+    <details class="sidenav__group">
+      <summary>The site</summary>
+      <ul class="sidenav__list">
+        <li><a class="sidenav__link" href="admin-appearance.html">Appearance</a></li>
+        <li><a class="sidenav__link" href="#">Front page layout</a></li>
+        <li><a class="sidenav__link" href="#">Advertisements</a></li>
+        <li><a class="sidenav__link" href="admin-analytics.html">Analytics</a></li>
+        <li><a class="sidenav__link" href="#">Settings</a></li>
+        <li><a class="sidenav__link" href="#">Learn subdomain</a></li>
+        <li><a class="sidenav__link" href="#">Record settings</a></li>
+      </ul>
+    </details>
+
+    <div class="sidenav__foot">
+      <span class="avatar" aria-hidden="true">CA</span>
+      <span class="sidenav__who">
+        <span class="sidenav__name">Chidi Anyaso</span>
+        <span class="sidenav__role">Administrator</span>
+      </span>
+    </div>
+  </nav>
+
+  <div class="shell__main">
+
+    <!-- COMPONENT: topbar (Dashboard B only) -->
+    <div class="topbar">
+      <span class="topbar__title">Administration</span>
+      <span class="u-sm u-faint">ozituma.com</span>
+      <div class="topbar__spacer"></div>
+      <form class="topbar__search" method="get" action="/admin/words" role="search">
+        <label class="visually-hidden" for="gq">Search the record</label>
+        <input id="gq" name="q" type="text" placeholder="Search the record…" style="font:inherit;font-size:var(--t-sm);padding:0.3rem var(--s-3);border:1px solid var(--line);border-radius:var(--radius);background:var(--paper);color:var(--ink)">
+        <button class="btn btn--sm" type="submit">Search</button>
+      </form>
+      <a class="btn btn--sm" href="contribute-overview.html">Contributor view</a>
+    </div>
+
+    <main class="shell__content" id="main">
+
+      <header class="page-header">
+        <div class="page-header__text">
+          <p class="page-header__kicker">Thursday, 1 October</p>
+          <h1 class="page-header__title">What the record holds</h1>
+        </div>
+        <div class="page-header__actions">
+          <a class="btn btn--primary" href="review.html">Review 12 submissions</a>
+        </div>
+      </header>
+
+      <!-- Needs-attention first: an administrator's next action, not decoration. -->
+      <section class="panel" aria-labelledby="att-h">
+        <div class="panel__head">
+          <h2 class="panel__title" id="att-h">Needs attention</h2>
+          <span class="panel__note">3 things</span>
+        </div>
+        <ul class="panel__body--flush" style="list-style:none;margin:0;padding:0">
+          <li class="entry" style="padding:var(--s-3) var(--s-5)">
+            <div class="entry__main">
+              <strong>12 submissions are waiting on an editor.</strong>
+              <span class="u-muted u-sm">The oldest has been in the queue 9 days.</span>
+            </div>
+            <div class="entry__side"><a class="btn btn--sm" href="review.html">Open the queue</a></div>
+          </li>
+          <li class="entry" style="padding:var(--s-3) var(--s-5)">
+            <div class="entry__main">
+              <strong>4 accounts are awaiting approval.</strong>
+              <span class="u-muted u-sm">Registered in the last week, no role assigned.</span>
+            </div>
+            <div class="entry__side"><a class="btn btn--sm" href="admin-users.html">Review accounts</a></div>
+          </li>
+          <li class="entry" style="padding:var(--s-3) var(--s-5)">
+            <div class="entry__main">
+              <strong>31 word entries are hidden.</strong>
+              <span class="u-muted u-sm">Hidden entries stay out of search and the public pages.</span>
+            </div>
+            <div class="entry__side"><a class="btn btn--sm" href="#">See hidden words</a></div>
+          </li>
+        </ul>
+      </section>
+
+      <h2 class="page-header__kicker u-mt" style="margin-bottom:var(--s-3)">The record, section by section</h2>
+      <div class="grid grid--4">
+        <a class="stat" href="#"><span class="stat__label">Words</span><span class="stat__value u-mono">14,208</span><span class="stat__meta">31 hidden</span></a>
+        <a class="stat" href="#"><span class="stat__label">Names</span><span class="stat__value u-mono">3,117</span><span class="stat__meta">2 hidden</span></a>
+        <a class="stat" href="#"><span class="stat__label">Clans &amp; towns</span><span class="stat__value u-mono">612</span><span class="stat__meta">none hidden</span></a>
+        <a class="stat" href="#"><span class="stat__label">Proverbs</span><span class="stat__value u-mono">1,044</span><span class="stat__meta">4 hidden</span></a>
+        <a class="stat" href="#"><span class="stat__label">Recordings</span><span class="stat__value u-mono">287</span><span class="stat__meta">read-only here</span></a>
+        <a class="stat" href="#"><span class="stat__label">Dialects</span><span class="stat__value u-mono">19</span><span class="stat__meta">across 5 states</span></a>
+        <a class="stat" href="admin-users.html"><span class="stat__label">Accounts</span><span class="stat__value u-mono">486</span><span class="stat__meta">7 editors, 2 admins</span></a>
+        <a class="stat stat--attention" href="review.html"><span class="stat__label">In the queue</span><span class="stat__value u-mono">12</span><span class="stat__meta">oldest 9 days</span></a>
+      </div>
+
+      <div class="grid grid--2 u-mt">
+        <section class="panel" aria-labelledby="recent-h">
+          <div class="panel__head">
+            <h2 class="panel__title" id="recent-h">Last decided</h2>
+            <div class="panel__actions"><a class="btn btn--sm" href="#">All submissions</a></div>
+          </div>
+          <div class="table-wrap">
+            <table class="table">
+              <caption class="visually-hidden">Recently decided submissions</caption>
+              <thead>
+                <tr><th scope="col">Entry</th><th scope="col">Kind</th><th scope="col">Decision</th><th scope="col">By</th><th scope="col">When</th></tr>
+              </thead>
+              <tbody>
+                <tr><td class="igbo">ọ̀gụ̀gụ̀</td><td>Word</td><td><span class="badge badge--accepted">Accepted</span></td><td>Chidi A.</td><td class="u-faint">yesterday</td></tr>
+                <tr><td class="igbo">ákwụ́kwọ́ ndú</td><td>Word</td><td><span class="badge badge--accepted">Accepted</span></td><td>Chidi A.</td><td class="u-faint">yesterday</td></tr>
+                <tr><td class="igbo">ńnụ́nụ́ ọ̀chị̀chà</td><td>Word</td><td><span class="badge badge--refused">Refused</span></td><td>Chidi A.</td><td class="u-faint">6 days</td></tr>
+                <tr><td class="igbo">Ngozi</td><td>Name</td><td><span class="badge badge--accepted">Accepted</span></td><td>Nkechi O.</td><td class="u-faint">1 week</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="panel" aria-labelledby="top-h">
+          <div class="panel__head">
+            <h2 class="panel__title" id="top-h">Who is contributing</h2>
+            <div class="panel__actions"><a class="btn btn--sm" href="admin-users.html">All users</a></div>
+          </div>
+          <div class="table-wrap">
+            <table class="table">
+              <caption class="visually-hidden">Contributors by accepted entries, last 30 days</caption>
+              <thead>
+                <tr><th scope="col">Person</th><th scope="col">Role</th><th scope="col" class="u-right">Accepted</th><th scope="col" class="u-right">Pending</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><span class="u-flex"><span class="avatar avatar--sm" aria-hidden="true">EN</span> Emeka Nwosu</span></td><td><span class="badge badge--role">Contributor</span></td><td class="table__num">41</td><td class="table__num">3</td></tr>
+                <tr><td><span class="u-flex"><span class="avatar avatar--sm" aria-hidden="true">NO</span> Nkechi Obiora</span></td><td><span class="badge badge--role">Editor</span></td><td class="table__num">29</td><td class="table__num">6</td></tr>
+                <tr><td><span class="u-flex"><span class="avatar avatar--sm" aria-hidden="true">AO</span> Adaeze Okeke</span></td><td><span class="badge badge--role">Contributor</span></td><td class="table__num">18</td><td class="table__num">1</td></tr>
+                <tr><td><span class="u-flex"><span class="avatar avatar--sm" aria-hidden="true">UE</span> Uchenna Eze</span></td><td><span class="badge badge--role">Contributor</span></td><td class="table__num">7</td><td class="table__num">2</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+    </main>
+  </div>
+</div>
+</body>
+</html>

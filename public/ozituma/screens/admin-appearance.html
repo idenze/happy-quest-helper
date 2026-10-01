@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Appearance — Ozituma administration</title>
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="../styles/dashboard.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="shell shell--admin">
+  <nav class="sidenav" aria-label="Administration">
+    <a class="sidenav__brand" href="../index.html">
+      <span class="sidenav__mark">Ọzịtụma</span>
+      <span class="sidenav__context">Admin</span>
+    </a>
+    <ul class="sidenav__list">
+      <li><a class="sidenav__link" href="admin-dashboard.html">Dashboard</a></li>
+    </ul>
+    <details class="sidenav__group">
+      <summary>The record</summary>
+      <ul class="sidenav__list">
+        <li><a class="sidenav__link" href="#">Words <span class="sidenav__count">14,208</span></a></li>
+        <li><a class="sidenav__link" href="#">Names <span class="sidenav__count">3,117</span></a></li>
+        <li><a class="sidenav__link" href="#">Clans <span class="sidenav__count">612</span></a></li>
+        <li><a class="sidenav__link" href="#">Proverbs <span class="sidenav__count">1,044</span></a></li>
+      </ul>
+    </details>
+    <details class="sidenav__group">
+      <summary>People</summary>
+      <ul class="sidenav__list">
+        <li><a class="sidenav__link" href="admin-users.html">Users <span class="sidenav__count">486</span></a></li>
+        <li><a class="sidenav__link sidenav__link--review" href="review.html">Review queue <span class="sidenav__count">12</span></a></li>
+      </ul>
+    </details>
+    <details class="sidenav__group" open>
+      <summary>The site</summary>
+      <ul class="sidenav__list">
+        <li><a class="sidenav__link" href="admin-appearance.html" aria-current="page">Appearance</a></li>
+        <li><a class="sidenav__link" href="#">Front page layout</a></li>
+        <li><a class="sidenav__link" href="#">Advertisements</a></li>
+        <li><a class="sidenav__link" href="admin-analytics.html">Analytics</a></li>
+        <li><a class="sidenav__link" href="#">Settings</a></li>
+        <li><a class="sidenav__link" href="#">Learn subdomain</a></li>
+        <li><a class="sidenav__link" href="#">Record settings</a></li>
+      </ul>
+    </details>
+    <div class="sidenav__foot">
+      <span class="avatar" aria-hidden="true">CA</span>
+      <span class="sidenav__who">
+        <span class="sidenav__name">Chidi Anyaso</span>
+        <span class="sidenav__role">Administrator</span>
+      </span>
+    </div>
+  </nav>
+
+  <div class="shell__main">
+    <div class="topbar">
+      <span class="topbar__title">Appearance</span>
+      <div class="topbar__spacer"></div>
+      <a class="btn btn--sm" href="https://ozituma.com">View the public site</a>
+    </div>
+
+    <main class="shell__content" id="main">
+
+      <header class="page-header">
+        <div class="page-header__text">
+          <p class="page-header__kicker">Public site only — the dashboards keep their own chrome</p>
+          <h1 class="page-header__title">Appearance</h1>
+          <p class="page-header__lede">
+            Six colours, the logo, the content width, the menu order and the footer.
+            Everything here writes CSS custom properties the whole public site reads.
+          </p>
+        </div>
+      </header>
+
+      <form method="post" action="/api/appearance" enctype="multipart/form-data">
+
+        <div class="grid grid--2">
+          <section class="panel" aria-labelledby="col-h">
+            <div class="panel__head"><h2 class="panel__title" id="col-h">Colours</h2></div>
+            <div class="panel__body">
+              <p class="u-sm u-muted" style="margin-top:0">
+                Each one is stored as <span class="u-mono">oklch()</span>. The colour picker writes hex;
+                the server converts. Leave a field empty to fall back to the built-in value.
+              </p>
+
+              <div class="field-row">
+                <div class="field">
+                  <label class="field__label" for="ink">Text colour <span class="u-mono u-xs u-faint">--ink</span></label>
+                  <input id="ink" name="ink" type="color" value="#3a3129">
+                </div>
+                <div class="field">
+                  <label class="field__label" for="paper">Page colour <span class="u-mono u-xs u-faint">--paper</span></label>
+                  <input id="paper" name="paper" type="color" value="#fbf8f3">
+                </div>
+              </div>
+              <div class="field-row">
+                <div class="field">
+                  <label class="field__label" for="accent">Accent <span class="u-mono u-xs u-faint">--accent</span></label>
+                  <input id="accent" name="accent" type="color" value="#9c5b33">
+                </div>
+                <div class="field">
+                  <label class="field__label" for="link">Links <span class="u-mono u-xs u-faint">--link</span></label>
+                  <input id="link" name="link" type="color" value="#2f4d8f">
+                </div>
+              </div>
+              <div class="field-row">
+                <div class="field">
+                  <label class="field__label" for="header_bg">Header background <span class="u-mono u-xs u-faint">--header-bg</span></label>
+                  <input id="header_bg" name="header_bg" type="color" value="#2b2520">
+                </div>
+                <div class="field">
+                  <label class="field__label" for="footer_bg">Footer background <span class="u-mono u-xs u-faint">--footer-bg</span></label>
+                  <input id="footer_bg" name="footer_bg" type="color" value="#2b2520">
+                </div>
+              </div>
+
+              <div class="notice notice--info" style="margin:0">
+                <div>
+                  <p class="notice__title">Contrast is checked when you save</p>
+                  <p class="notice__body">If text and page fall below 4.5:1 the save is refused and the old palette stays. Nothing goes live half-broken.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <div>
+            <section class="panel" aria-labelledby="ident-h">
+              <div class="panel__head"><h2 class="panel__title" id="ident-h">Identity and measure</h2></div>
+              <div class="panel__body">
+                <div class="field">
+                  <label class="field__label" for="logo">Logo <span class="field__opt">Optional</span></label>
+                  <input id="logo" name="logo" type="file" accept="image/svg+xml,image/png">
+                  <span class="field__hint">SVG or PNG. Current: <a href="#">ozituma-mark.svg</a>. With none, the site sets the name in Libre Baskerville.</span>
+                </div>
+                <div class="field">
+                  <label class="field__label" for="wrap">Content width <span class="u-mono u-xs u-faint">--wrap</span></label>
+                  <input id="wrap" name="wrap" type="text" value="68rem">
+                  <span class="field__hint">Any CSS length. Pages are built to hold at 56rem and at 90rem alike.</span>
+                </div>
+                <div class="field">
+                  <label class="field__label" for="footer_text">Footer text</label>
+                  <textarea id="footer_text" name="footer_text">Ọzịtụma is an archive of the Igbo language, kept by its speakers.</textarea>
+                </div>
+              </div>
+            </section>
+
+            <!-- One of the only two pieces of client JS in the whole dashboard.
+                 It degrades: the number inputs below work with JS disabled. -->
+            <section class="panel" aria-labelledby="menu-h">
+              <div class="panel__head">
+                <h2 class="panel__title" id="menu-h">Menu order</h2>
+                <span class="panel__note">drag, or type a position</span>
+              </div>
+              <ul class="panel__body--flush" style="list-style:none;margin:0;padding:0">
+                <li class="entry" style="padding:var(--s-2) var(--s-4);align-items:center">
+                  <span class="u-faint" aria-hidden="true">⠿</span>
+                  <span class="entry__main">Dictionary</span>
+                  <span class="entry__side" style="flex-direction:row;align-items:center">
+                    <label class="visually-hidden" for="m1">Position for Dictionary</label>
+                    <input id="m1" name="menu_order[dictionary]" type="number" value="1" min="1" style="width:4rem;font:inherit;font-size:var(--t-sm);padding:0.2rem var(--s-2);border:1px solid var(--line);border-radius:var(--radius);background:var(--paper);color:var(--ink)">
+                  </span>
+                </li>
+                <li class="entry" style="padding:var(--s-2) var(--s-4);align-items:center">
+                  <span class="u-faint" aria-hidden="true">⠿</span>
+                  <span class="entry__main">Names</span>
+                  <span class="entry__side" style="flex-direction:row;align-items:center">
+                    <label class="visually-hidden" for="m2">Position for Names</label>
+                    <input id="m2" name="menu_order[names]" type="number" value="2" min="1" style="width:4rem;font:inherit;font-size:var(--t-sm);padding:0.2rem var(--s-2);border:1px solid var(--line);border-radius:var(--radius);background:var(--paper);color:var(--ink)">
+                  </span>
+                </li>
+                <li class="entry" style="padding:var(--s-2) var(--s-4);align-items:center">
+                  <span class="u-faint" aria-hidden="true">⠿</span>
+                  <span class="entry__main">Proverbs</span>
+                  <span class="entry__side" style="flex-direction:row;align-items:center">
+                    <label class="visually-hidden" for="m3">Position for Proverbs</label>
+                    <input id="m3" name="menu_order[proverbs]" type="number" value="3" min="1" style="width:4rem;font:inherit;font-size:var(--t-sm);padding:0.2rem var(--s-2);border:1px solid var(--line);border-radius:var(--radius);background:var(--paper);color:var(--ink)">
+                  </span>
+                </li>
+                <li class="entry" style="padding:var(--s-2) var(--s-4);align-items:center">
+                  <span class="u-faint" aria-hidden="true">⠿</span>
+                  <span class="entry__main">Clans &amp; towns</span>
+                  <span class="entry__side" style="flex-direction:row;align-items:center">
+                    <label class="visually-hidden" for="m4">Position for Clans and towns</label>
+                    <input id="m4" name="menu_order[clans]" type="number" value="4" min="1" style="width:4rem;font:inherit;font-size:var(--t-sm);padding:0.2rem var(--s-2);border:1px solid var(--line);border-radius:var(--radius);background:var(--paper);color:var(--ink)">
+                  </span>
+                </li>
+              </ul>
+              <div class="panel__foot u-xs">
+                Drag to reorder when JavaScript is on; the position boxes do the same job when it is off.
+              </div>
+            </section>
+          </div>
+        </div>
+
+        <!-- A live preview that costs nothing: a scoped block using the tokens. -->
+        <section class="panel" aria-labelledby="prev-h">
+          <div class="panel__head">
+            <h2 class="panel__title" id="prev-h">Preview</h2>
+            <span class="panel__note">how the public site reads with the saved palette</span>
+          </div>
+          <div class="panel__body">
+            <div style="border:1px solid var(--line);border-radius:var(--radius);overflow:hidden">
+              <div style="background:var(--header-bg);color:var(--chrome-ink);padding:var(--s-3) var(--s-4);display:flex;gap:var(--s-4);align-items:baseline">
+                <strong style="font-family:var(--font-serif)">Ọzịtụma</strong>
+                <span class="u-xs">Dictionary · Names · Proverbs · Clans</span>
+              </div>
+              <div style="background:var(--paper);padding:var(--s-5) var(--s-4)">
+                <h3 class="igbo" style="margin:0 0 var(--s-2)">ị̀sị̀ àkwụ́</h3>
+                <p class="u-sm u-muted" style="margin:0 0 var(--s-2)">palm-fruit head — the whole bunch cut from the tree</p>
+                <a href="#">See every sense of this word</a>
+              </div>
+              <div style="background:var(--footer-bg);color:var(--chrome-ink-soft);padding:var(--s-3) var(--s-4)" class="u-xs">
+                Ọzịtụma is an archive of the Igbo language, kept by its speakers.
+              </div>
+            </div>
+          </div>
+          <div class="panel__foot" style="justify-content:flex-end">
+            <div class="form-actions" style="border:0;padding:0">
+              <button class="btn" type="reset">Discard changes</button>
+              <button class="btn btn--primary" type="submit">Save appearance</button>
+            </div>
+          </div>
+        </section>
+
+      </form>
+    </main>
+  </div>
+</div>
+</body>
+</html>

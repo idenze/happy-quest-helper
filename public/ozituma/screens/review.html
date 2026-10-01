@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Review queue — Ozituma</title>
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="../styles/dashboard.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="shell">
+  <nav class="sidenav" aria-label="Contributor dashboard">
+    <a class="sidenav__brand" href="../index.html">
+      <span class="sidenav__mark">Ọzịtụma</span>
+      <span class="sidenav__context">Contribute</span>
+    </a>
+    <ul class="sidenav__list">
+      <li><a class="sidenav__link" href="contribute-overview.html">Overview</a></li>
+      <li><a class="sidenav__link" href="contribute-submissions.html">Your submissions <span class="sidenav__count">38</span></a></li>
+    </ul>
+    <details class="sidenav__group" open>
+      <summary>Add to the record</summary>
+      <ul class="sidenav__list">
+        <li><a class="sidenav__link" href="contribute-word.html">Word</a></li>
+        <li><a class="sidenav__link" href="#">Name</a></li>
+        <li><a class="sidenav__link" href="#">Proverb</a></li>
+        <li><a class="sidenav__link" href="#">Clan or town</a></li>
+        <li><a class="sidenav__link" href="#">Dialect</a></li>
+        <li><a class="sidenav__link" href="#">Recording</a></li>
+      </ul>
+    </details>
+    <details class="sidenav__group" open>
+      <summary>Editor</summary>
+      <ul class="sidenav__list">
+        <li><a class="sidenav__link sidenav__link--review" href="review.html" aria-current="page">Review queue <span class="sidenav__count">12</span></a></li>
+      </ul>
+    </details>
+    <div class="sidenav__foot">
+      <span class="avatar" aria-hidden="true">NO</span>
+      <span class="sidenav__who">
+        <span class="sidenav__name">Nkechi Obiora</span>
+        <span class="sidenav__role">Editor</span>
+      </span>
+    </div>
+  </nav>
+
+  <div class="shell__main">
+    <main class="shell__content" id="main">
+
+      <header class="page-header">
+        <div class="page-header__text">
+          <p class="page-header__kicker">Editor · same dashboard, extra authority</p>
+          <h1 class="page-header__title">Review queue</h1>
+          <p class="page-header__lede">Twelve submissions waiting. Oldest first; read one, decide, move on.</p>
+        </div>
+      </header>
+
+      <div class="grid grid--aside">
+
+        <!-- The decision surface: one submission read in full. -->
+        <section class="panel" aria-labelledby="sub-h">
+          <div class="panel__head">
+            <h2 class="panel__title" id="sub-h">Submission 1 of 12</h2>
+            <span class="badge badge--pending">Pending</span>
+            <div class="panel__actions">
+              <a class="btn btn--sm" href="#" aria-disabled="true">Previous</a>
+              <a class="btn btn--sm" href="#">Next</a>
+            </div>
+          </div>
+
+          <div class="panel__body">
+            <p class="page-header__kicker">Word · Onitsha dialect</p>
+            <h3 class="igbo" style="font-size:var(--t-2xl);margin:0 0 var(--s-2)">ị̀sị̀ àkwụ́</h3>
+            <p class="u-muted" style="margin-top:0">palm-fruit head — the whole bunch of fruit cut from the tree</p>
+
+            <dl class="pairs u-mt">
+              <dt>Without tones</dt><dd>isi akwu</dd>
+              <dt>Part of speech</dt><dd>Noun</dd>
+              <dt>Example</dt><dd><span class="igbo">Ọ bụ ị̀sị̀ àkwụ́ ka ha bubatara.</span><br><span class="u-muted">It was a head of palm fruit that they carried in.</span></dd>
+              <dt>Variants</dt><dd class="u-faint">none given</dd>
+              <dt>Audio</dt><dd class="u-faint">none attached</dd>
+              <dt>Source</dt><dd>Told by the contributor’s grandmother, Ogidi</dd>
+              <dt>Sent by</dt><dd>Emeka Nwosu · 14 accepted, 1 refused</dd>
+              <dt>Sent</dt><dd>2 days ago</dd>
+            </dl>
+
+            <div class="notice notice--info u-mt">
+              <div>
+                <p class="notice__title">One near match in the record</p>
+                <p class="notice__body"><span class="igbo">àkwụ́</span> — palm fruit. Different sense; not a duplicate.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Three plain posts to the server's own actions. No JS. -->
+          <div class="panel__foot" style="flex-wrap:wrap;gap:var(--s-4)">
+            <form method="post" action="/api/submissions/1841/accept" class="u-flex">
+              <button class="btn btn--primary" type="submit">Accept and publish</button>
+            </form>
+            <form method="post" action="/api/submissions/1841/edit" class="u-flex">
+              <button class="btn" type="submit">Edit, then publish</button>
+            </form>
+            <details class="disclosure" style="flex:1 1 100%;margin:0">
+              <summary>Refuse, with a reason</summary>
+              <div class="disclosure__body">
+                <form method="post" action="/api/submissions/1841/refuse">
+                  <div class="field">
+                    <label class="field__label" for="reason">
+                      What should the contributor do instead? <span class="field__req">Required</span>
+                    </label>
+                    <textarea id="reason" name="reason" required></textarea>
+                    <span class="field__hint">This is shown to them verbatim. A refusal without a next step is a dead end.</span>
+                  </div>
+                  <div class="form-actions" style="border:0;padding-top:0">
+                    <button class="btn btn--danger" type="submit">Refuse and send the reason</button>
+                  </div>
+                </form>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <aside>
+          <section class="panel" aria-labelledby="q-h">
+            <div class="panel__head">
+              <h2 class="panel__title" id="q-h">The queue</h2>
+              <span class="panel__note">12</span>
+            </div>
+            <ul class="panel__body--flush" style="list-style:none;margin:0;padding:0">
+              <li class="entry is-attention" style="padding:var(--s-3) var(--s-4)">
+                <div class="entry__main">
+                  <h3 class="entry__title" style="font-size:var(--t-base)"><a href="#"><span class="igbo">ị̀sị̀ àkwụ́</span></a></h3>
+                  <p class="entry__meta" style="margin-top:var(--s-1)"><span>Word</span><span>2 days</span></p>
+                </div>
+              </li>
+              <li class="entry" style="padding:var(--s-3) var(--s-4)">
+                <div class="entry__main">
+                  <h3 class="entry__title" style="font-size:var(--t-base)"><a href="#"><span class="igbo">Chidimma</span></a></h3>
+                  <p class="entry__meta" style="margin-top:var(--s-1)"><span>Name</span><span>3 days</span></p>
+                </div>
+              </li>
+              <li class="entry" style="padding:var(--s-3) var(--s-4)">
+                <div class="entry__main">
+                  <h3 class="entry__title" style="font-size:var(--t-base)"><a href="#"><span class="igbo">Onye ụjọ adịghị amụ nwa</span></a></h3>
+                  <p class="entry__meta" style="margin-top:var(--s-1)"><span>Proverb</span><span>5 days</span></p>
+                </div>
+              </li>
+              <li class="entry" style="padding:var(--s-3) var(--s-4)">
+                <div class="entry__main">
+                  <h3 class="entry__title" style="font-size:var(--t-base)"><a href="#"><span class="igbo">Ọ̀gị̀dị̀ ǹkwọ́</span></a></h3>
+                  <p class="entry__meta" style="margin-top:var(--s-1)"><span>Clan</span><span>4 days</span></p>
+                </div>
+              </li>
+            </ul>
+            <div class="panel__foot">
+              <nav class="pagination" aria-label="Queue pages">
+                <a class="pagination__link" href="#" aria-current="page">1</a>
+                <a class="pagination__link" href="#">2</a>
+                <a class="pagination__link" href="#">3</a>
+                <a class="pagination__link" href="#">Next</a>
+              </nav>
+            </div>
+          </section>
+
+          <!-- The empty queue: a real screen people will see, and a good one. -->
+          <section class="panel" aria-labelledby="eq-h">
+            <div class="panel__head"><h2 class="panel__title" id="eq-h">Empty queue state</h2></div>
+            <div class="empty">
+              <p class="empty__title">The queue is clear</p>
+              <p class="empty__body">Nothing is waiting on an editor. Decisions you made are kept in the record.</p>
+              <a class="btn" href="contribute-word.html">Add something of your own</a>
+            </div>
+          </section>
+        </aside>
+
+      </div>
+    </main>
+  </div>
+</div>
+</body>
+</html>

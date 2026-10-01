@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Add a word — Ozituma contributor dashboard</title>
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="../styles/dashboard.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="shell">
+  <nav class="sidenav" aria-label="Contributor dashboard">
+    <a class="sidenav__brand" href="../index.html">
+      <span class="sidenav__mark">Ọzịtụma</span>
+      <span class="sidenav__context">Contribute</span>
+    </a>
+    <ul class="sidenav__list">
+      <li><a class="sidenav__link" href="contribute-overview.html">Overview</a></li>
+      <li><a class="sidenav__link" href="contribute-submissions.html">Your submissions <span class="sidenav__count">38</span></a></li>
+    </ul>
+    <details class="sidenav__group" open>
+      <summary>Add to the record</summary>
+      <ul class="sidenav__list">
+        <li><a class="sidenav__link" href="contribute-word.html" aria-current="page">Word</a></li>
+        <li><a class="sidenav__link" href="#">Name</a></li>
+        <li><a class="sidenav__link" href="#">Proverb</a></li>
+        <li><a class="sidenav__link" href="#">Clan or town</a></li>
+        <li><a class="sidenav__link" href="#">Dialect</a></li>
+        <li><a class="sidenav__link" href="#">Recording</a></li>
+      </ul>
+    </details>
+    <details class="sidenav__group" open>
+      <summary>Editor</summary>
+      <ul class="sidenav__list">
+        <li><a class="sidenav__link sidenav__link--review" href="review.html">Review queue <span class="sidenav__count">12</span></a></li>
+      </ul>
+    </details>
+    <details class="sidenav__group">
+      <summary>You</summary>
+      <ul class="sidenav__list">
+        <li><a class="sidenav__link" href="#">Account</a></li>
+        <li><a class="sidenav__link" href="#">Public profile</a></li>
+      </ul>
+    </details>
+    <div class="sidenav__foot">
+      <span class="avatar" aria-hidden="true">NO</span>
+      <span class="sidenav__who">
+        <span class="sidenav__name">Nkechi Obiora</span>
+        <span class="sidenav__role">Editor</span>
+      </span>
+    </div>
+  </nav>
+
+  <div class="shell__main">
+    <main class="shell__content" id="main">
+
+      <header class="page-header">
+        <div class="page-header__text">
+          <p class="page-header__kicker">Add to the record — 1 of 6 kinds</p>
+          <h1 class="page-header__title">Add a dictionary entry</h1>
+          <p class="page-header__lede">
+            Three short parts. Only the first is required; the rest make the entry more useful
+            to whoever reads it next.
+          </p>
+        </div>
+      </header>
+
+      <!-- COMPONENT: notice --error. The failed-submission state, designed. -->
+      <div class="notice notice--error" role="alert">
+        <div>
+          <p class="notice__title">Nothing was saved — one field needs your attention</p>
+          <p class="notice__body"><a href="#part-of-speech">Part of speech</a> was left unset. Everything else you typed is still here.</p>
+        </div>
+      </div>
+
+      <div class="grid grid--aside">
+        <div>
+          <!-- CONSTRAINT: plain HTML post to the server's own action, field
+               names unchanged. Usable with JavaScript disabled. -->
+          <form id="word-form" method="post" action="/api/words" enctype="multipart/form-data">
+
+            <fieldset class="fieldgroup">
+              <legend class="fieldgroup__legend">
+                <span class="fieldgroup__step">1</span> The word itself
+              </legend>
+              <p class="fieldgroup__intro">This is all that is strictly needed to send the entry.</p>
+
+              <div class="field-row">
+                <div class="field">
+                  <label class="field__label" for="word">Igbo word <span class="field__req">Required</span></label>
+                  <input id="word" name="word" type="text" class="igbo" value="ị̀sị̀ àkwụ́" required>
+                  <span class="field__hint">Write it with tone marks if you know them.</span>
+                </div>
+                <div class="field">
+                  <label class="field__label" for="plain">Without tone marks <span class="field__opt">Optional</span></label>
+                  <input id="plain" name="plain" type="text" value="isi akwu">
+                  <span class="field__hint">Helps people find it when searching.</span>
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="field__label" for="meaning">Meaning in English <span class="field__req">Required</span></label>
+                <textarea id="meaning" name="meaning" required>palm-fruit head — the whole bunch of fruit cut from the tree</textarea>
+              </div>
+
+              <div class="field-row">
+                <div class="field field--error" id="part-of-speech">
+                  <label class="field__label" for="pos">Part of speech <span class="field__req">Required</span></label>
+                  <select id="pos" name="pos" required aria-describedby="pos-err">
+                    <option value="" selected>Choose one…</option>
+                    <option value="noun">Noun</option>
+                    <option value="verb">Verb</option>
+                    <option value="adjective">Adjective</option>
+                    <option value="adverb">Adverb</option>
+                    <option value="phrase">Phrase</option>
+                  </select>
+                  <span class="field__error" id="pos-err">Choose a part of speech before sending.</span>
+                </div>
+                <div class="field">
+                  <label class="field__label" for="dialect">Dialect <span class="field__opt">Optional</span></label>
+                  <select id="dialect" name="dialect">
+                    <option value="">Not specified</option>
+                    <option value="central">Central (Owerri)</option>
+                    <option value="onitsha" selected>Onitsha</option>
+                    <option value="nsukka">Nsukka</option>
+                    <option value="ngwa">Ngwa</option>
+                  </select>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="fieldgroup">
+              <legend class="fieldgroup__legend">
+                <span class="fieldgroup__step">2</span> Show it in use
+              </legend>
+              <p class="fieldgroup__intro">One sentence does more for a reader than three definitions.</p>
+
+              <div class="field">
+                <label class="field__label" for="example">Example sentence <span class="field__opt">Optional</span></label>
+                <input id="example" name="example" type="text" class="igbo" placeholder="Ọ bụ ị̀sị̀ àkwụ́ ka ha bubatara.">
+              </div>
+              <div class="field">
+                <label class="field__label" for="example_translation">Its translation <span class="field__opt">Optional</span></label>
+                <input id="example_translation" name="example_translation" type="text" placeholder="It was a head of palm fruit that they carried in.">
+              </div>
+            </fieldset>
+
+            <!-- Progressive disclosure: the long tail stays closed until wanted.
+                 <details>/<summary>, so it works with JavaScript off. -->
+            <details class="disclosure">
+              <summary>Part 3 — extra detail, if you have it (5 fields)</summary>
+              <div class="disclosure__body">
+                <div class="field-row">
+                  <div class="field">
+                    <label class="field__label" for="variants">Variants</label>
+                    <input id="variants" name="variants" type="text">
+                    <span class="field__hint">Separate with commas.</span>
+                  </div>
+                  <div class="field">
+                    <label class="field__label" for="synonyms">Synonyms</label>
+                    <input id="synonyms" name="synonyms" type="text">
+                  </div>
+                </div>
+                <div class="field">
+                  <label class="field__label" for="etymology">Where the word comes from</label>
+                  <textarea id="etymology" name="etymology"></textarea>
+                </div>
+                <div class="field">
+                  <label class="field__label" for="audio">Audio of the word</label>
+                  <input id="audio" name="audio" type="file" accept="audio/*">
+                  <span class="field__hint">MP3 or WAV. You can also add one later from the entry.</span>
+                </div>
+                <div class="field">
+                  <label class="field__label" for="source">Source or who told you</label>
+                  <input id="source" name="source" type="text">
+                </div>
+              </div>
+            </details>
+
+            <div class="form-actions">
+              <p class="form-actions__note">
+                An editor reads every submission. You will see the decision on
+                <a href="contribute-submissions.html">your submissions</a>.
+              </p>
+              <button class="btn" type="submit" name="intent" value="draft">Save as draft</button>
+              <button class="btn btn--primary" type="submit" name="intent" value="submit">Send for review</button>
+            </div>
+          </form>
+        </div>
+
+        <aside>
+          <!-- COMPONENT: steps. Anchors only — an honest map of the form,
+               not a fake progress bar. -->
+          <section class="panel" aria-labelledby="steps-h">
+            <div class="panel__head"><h2 class="panel__title" id="steps-h">This task</h2></div>
+            <div class="panel__body">
+              <ol class="steps">
+                <li class="steps__item steps__item--current"><span class="steps__num">1</span> <span>The word itself <span class="u-faint u-xs">— required</span></span></li>
+                <li class="steps__item"><span class="steps__num">2</span> <span>Show it in use <span class="u-faint u-xs">— optional</span></span></li>
+                <li class="steps__item"><span class="steps__num">3</span> <span>Extra detail <span class="u-faint u-xs">— optional</span></span></li>
+              </ol>
+              <p class="u-sm u-muted u-mb0">
+                Four fields is a complete entry. Everything past them is a kindness to the next reader.
+              </p>
+            </div>
+          </section>
+
+          <section class="panel" aria-labelledby="next-h">
+            <div class="panel__head"><h2 class="panel__title" id="next-h">What happens next</h2></div>
+            <div class="panel__body">
+              <ol class="u-sm u-muted" style="margin:0;padding-left:1.1rem">
+                <li>You send it; it appears in your submissions as <span class="badge badge--pending">Pending</span>.</li>
+                <li>An editor reads it, usually within a week.</li>
+                <li>It is published, or returned to you with a reason you can act on.</li>
+              </ol>
+            </div>
+          </section>
+
+          <!-- ROLE-CONDITIONAL: editors get a direct-publish affordance in the
+               same form, not a different screen. -->
+          <section class="panel" aria-labelledby="ed-h">
+            <div class="panel__head"><h2 class="panel__title" id="ed-h">As an editor</h2></div>
+            <div class="panel__body">
+              <p class="u-sm u-muted" style="margin-top:0">You may publish this entry without review.</p>
+              <button class="btn btn--block" type="submit" form="word-form" name="intent" value="publish">Publish straight away</button>
+            </div>
+          </section>
+        </aside>
+      </div>
+
+    </main>
+  </div>
+</div>
+</body>
+</html>
