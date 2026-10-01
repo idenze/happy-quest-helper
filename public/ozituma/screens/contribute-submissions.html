@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your submissions — Ozituma contributor dashboard</title>
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="../styles/dashboard.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="shell">
+  <nav class="sidenav" aria-label="Contributor dashboard">
+    <a class="sidenav__brand" href="../index.html">
+      <span class="sidenav__mark">Ọzịtụma</span>
+      <span class="sidenav__context">Contribute</span>
+    </a>
+    <ul class="sidenav__list">
+      <li><a class="sidenav__link" href="contribute-overview.html">Overview</a></li>
+      <li><a class="sidenav__link" href="contribute-submissions.html" aria-current="page">Your submissions <span class="sidenav__count">38</span></a></li>
+    </ul>
+    <details class="sidenav__group" open>
+      <summary>Add to the record</summary>
+      <ul class="sidenav__list">
+        <li><a class="sidenav__link" href="contribute-word.html">Word</a></li>
+        <li><a class="sidenav__link" href="#">Name</a></li>
+        <li><a class="sidenav__link" href="#">Proverb</a></li>
+        <li><a class="sidenav__link" href="#">Clan or town</a></li>
+        <li><a class="sidenav__link" href="#">Dialect</a></li>
+        <li><a class="sidenav__link" href="#">Recording</a></li>
+      </ul>
+    </details>
+    <details class="sidenav__group" open>
+      <summary>Editor</summary>
+      <ul class="sidenav__list">
+        <li><a class="sidenav__link sidenav__link--review" href="review.html">Review queue <span class="sidenav__count">12</span></a></li>
+      </ul>
+    </details>
+    <div class="sidenav__foot">
+      <span class="avatar" aria-hidden="true">NO</span>
+      <span class="sidenav__who">
+        <span class="sidenav__name">Nkechi Obiora</span>
+        <span class="sidenav__role">Editor</span>
+      </span>
+    </div>
+  </nav>
+
+  <div class="shell__main">
+    <main class="shell__content" id="main">
+
+      <header class="page-header">
+        <div class="page-header__text">
+          <p class="page-header__kicker">Everything you have sent</p>
+          <h1 class="page-header__title">Your submissions</h1>
+          <p class="page-header__lede">
+            The overview tells you how you are doing. This page is the record itself —
+            every entry, its state, and the reason behind it.
+          </p>
+        </div>
+        <div class="page-header__actions">
+          <a class="btn btn--primary" href="contribute-word.html">Add a word</a>
+        </div>
+      </header>
+
+      <section class="panel" aria-labelledby="subs-h">
+        <div class="panel__head">
+          <h2 class="panel__title" id="subs-h">38 submissions</h2>
+          <span class="panel__note">29 accepted · 6 pending · 3 refused</span>
+        </div>
+
+        <!-- Filters are a GET form: no JavaScript, bookmarkable, server-owned. -->
+        <form class="filters" method="get" action="/contribute/submissions">
+          <div class="field">
+            <label class="field__label" for="f-state">State</label>
+            <select id="f-state" name="state">
+              <option value="">All</option>
+              <option value="pending">Pending</option>
+              <option value="accepted">Accepted</option>
+              <option value="refused" selected>Refused</option>
+              <option value="draft">Draft</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="field__label" for="f-kind">Kind</label>
+            <select id="f-kind" name="kind">
+              <option value="">All kinds</option>
+              <option value="word">Words</option>
+              <option value="name">Names</option>
+              <option value="proverb">Proverbs</option>
+              <option value="clan">Clans</option>
+              <option value="dialect">Dialects</option>
+              <option value="recording">Recordings</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="field__label" for="f-q">Contains</label>
+            <input id="f-q" name="q" type="text">
+          </div>
+          <button class="btn" type="submit">Filter</button>
+          <a class="btn btn--quiet" href="/contribute/submissions">Clear</a>
+        </form>
+
+        <ul class="panel__body--flush" style="list-style:none;margin:0;padding:0">
+          <li class="entry">
+            <div class="entry__main">
+              <h3 class="entry__title"><span class="igbo">ńnụ́nụ́ ọ̀chị̀chà</span></h3>
+              <p class="entry__gloss">white bird; egret</p>
+              <p class="entry__meta"><span>Word</span><span>Sent 6 days ago</span><span>Decided by Chidi Anyaso</span></p>
+              <div class="notice notice--warning" style="margin:var(--s-3) 0 0">
+                <div>
+                  <p class="notice__title">Why it was refused</p>
+                  <p class="notice__body">“This sense is already recorded under <span class="igbo">nnụnụ</span>. Add it as a variant of that entry instead and it will go straight in.”</p>
+                </div>
+              </div>
+            </div>
+            <div class="entry__side">
+              <span class="badge badge--refused">Refused</span>
+              <a class="btn btn--sm" href="contribute-word.html">Edit and resend</a>
+            </div>
+          </li>
+
+          <li class="entry">
+            <div class="entry__main">
+              <h3 class="entry__title"><span class="igbo">Ọ̀gị̀dị̀ ǹkwọ́</span></h3>
+              <p class="entry__gloss">Clan — Anambra State, Idemili North</p>
+              <p class="entry__meta"><span>Clan</span><span>Sent 4 days ago</span><span>In the queue, 7 ahead of it</span></p>
+            </div>
+            <div class="entry__side">
+              <span class="badge badge--pending">Pending</span>
+              <a class="btn btn--sm" href="#">View</a>
+            </div>
+          </li>
+
+          <li class="entry">
+            <div class="entry__main">
+              <h3 class="entry__title"><span class="igbo">ọ̀gụ̀gụ̀</span></h3>
+              <p class="entry__gloss">reading; the act of counting</p>
+              <p class="entry__meta"><span>Word</span><span>Sent 8 days ago</span><span>Published yesterday</span></p>
+            </div>
+            <div class="entry__side">
+              <span class="badge badge--accepted">Accepted</span>
+              <a class="btn btn--sm" href="#">See it live</a>
+            </div>
+          </li>
+
+          <li class="entry">
+            <div class="entry__main">
+              <h3 class="entry__title"><span class="igbo">Amaechi</span></h3>
+              <p class="entry__gloss">Who knows tomorrow — personal name</p>
+              <p class="entry__meta"><span>Name</span><span>Not sent yet</span></p>
+            </div>
+            <div class="entry__side">
+              <span class="badge badge--draft">Draft</span>
+              <a class="btn btn--sm" href="contribute-word.html">Finish it</a>
+            </div>
+          </li>
+        </ul>
+
+        <div class="panel__foot">
+          <span>Showing 1–4 of 38</span>
+          <nav class="pagination" aria-label="Submissions pages">
+            <a class="pagination__link" href="#" aria-disabled="true">Previous</a>
+            <a class="pagination__link" href="#" aria-current="page">1</a>
+            <a class="pagination__link" href="#">2</a>
+            <a class="pagination__link" href="#">3</a>
+            <a class="pagination__link" href="#">Next</a>
+          </nav>
+        </div>
+      </section>
+
+      <!-- COMPONENT: empty. Shown instead of the list when the filter or the
+           account genuinely has nothing. No invented figures. -->
+      <section class="panel u-mt" aria-labelledby="empty-h">
+        <div class="panel__head"><h2 class="panel__title" id="empty-h">Empty state (shown when there is nothing)</h2></div>
+        <div class="empty">
+          <p class="empty__title">You have not sent anything yet</p>
+          <p class="empty__body">
+            When you add a word, a name or a proverb it will appear here with its state,
+            and the reason behind any decision.
+          </p>
+          <a class="btn btn--primary" href="contribute-word.html">Add your first word</a>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+</body>
+</html>
