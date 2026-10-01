@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Overview — Ozituma contributor dashboard</title>
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="../styles/dashboard.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="shell">
+
+  <!-- COMPONENT: sidenav (Dashboard A). Identical for contributor and editor;
+       the Review queue item is the only role-conditional entry. -->
+  <nav class="sidenav" aria-label="Contributor dashboard">
+    <a class="sidenav__brand" href="../index.html">
+      <span class="sidenav__mark">Ọzịtụma</span>
+      <span class="sidenav__context">Contribute</span>
+    </a>
+
+    <ul class="sidenav__list">
+      <li><a class="sidenav__link" href="contribute-overview.html" aria-current="page">Overview</a></li>
+      <li><a class="sidenav__link" href="contribute-submissions.html">Your submissions <span class="sidenav__count">38</span></a></li>
+    </ul>
+
+    <details class="sidenav__group" open>
+      <summary>Add to the record</summary>
+      <ul class="sidenav__list">
+        <li><a class="sidenav__link" href="contribute-word.html">Word</a></li>
+        <li><a class="sidenav__link" href="contribute-word.html">Name</a></li>
+        <li><a class="sidenav__link" href="contribute-word.html">Proverb</a></li>
+        <li><a class="sidenav__link" href="contribute-word.html">Clan or town</a></li>
+        <li><a class="sidenav__link" href="contribute-word.html">Dialect</a></li>
+        <li><a class="sidenav__link" href="contribute-word.html">Recording</a></li>
+      </ul>
+    </details>
+
+    <!-- ROLE-CONDITIONAL: rendered only when role is editor or administrator. -->
+    <details class="sidenav__group" open>
+      <summary>Editor</summary>
+      <ul class="sidenav__list">
+        <li><a class="sidenav__link sidenav__link--review" href="review.html">Review queue <span class="sidenav__count">12</span></a></li>
+      </ul>
+    </details>
+
+    <details class="sidenav__group">
+      <summary>You</summary>
+      <ul class="sidenav__list">
+        <li><a class="sidenav__link" href="#">Account</a></li>
+        <li><a class="sidenav__link" href="#">Public profile</a></li>
+      </ul>
+    </details>
+
+    <div class="sidenav__foot">
+      <span class="avatar" aria-hidden="true">NO</span>
+      <span class="sidenav__who">
+        <span class="sidenav__name">Nkechi Obiora</span>
+        <span class="sidenav__role">Editor</span>
+      </span>
+    </div>
+  </nav>
+
+  <div class="shell__main">
+    <main class="shell__content" id="main">
+
+      <header class="page-header">
+        <div class="page-header__text">
+          <p class="page-header__kicker">Ndeewo</p>
+          <h1 class="page-header__title">Good evening, Nkechi</h1>
+          <p class="page-header__lede">
+            Thirty-eight entries of yours are in the record. Here is where each of them stands,
+            and what is waiting for you.
+          </p>
+        </div>
+        <div class="page-header__actions">
+          <a class="btn btn--primary" href="contribute-word.html">Add a word</a>
+          <a class="btn" href="contribute-submissions.html">Your submissions</a>
+        </div>
+      </header>
+
+      <!-- COMPONENT: notice. Appears here when an editor decided on your work. -->
+      <div class="notice notice--success" role="status">
+        <div>
+          <p class="notice__title">Two of your submissions were accepted</p>
+          <p class="notice__body">
+            <span class="igbo">ọ̀gụ̀gụ̀</span> and <span class="igbo">ákwụ́kwọ́ ndú</span> are now published in the dictionary.
+            <a href="contribute-submissions.html">See them</a>.
+          </p>
+        </div>
+      </div>
+
+      <!-- COMPONENT: stat grid. Every figure is counted live; zero renders plainly. -->
+      <div class="grid grid--4">
+        <div class="stat">
+          <span class="stat__label">Accepted</span>
+          <span class="stat__value">29</span>
+          <span class="stat__meta">published in the record</span>
+        </div>
+        <div class="stat stat--attention">
+          <span class="stat__label">Awaiting review</span>
+          <span class="stat__value">6</span>
+          <span class="stat__meta">oldest sent 4 days ago</span>
+        </div>
+        <div class="stat">
+          <span class="stat__label">Needs your edit</span>
+          <span class="stat__value">3</span>
+          <span class="stat__meta">refused with a reason</span>
+        </div>
+        <div class="stat stat--zero">
+          <span class="stat__label">Recordings</span>
+          <span class="stat__value">0</span>
+          <span class="stat__meta">none sent yet</span>
+        </div>
+      </div>
+
+      <div class="grid grid--aside u-mt">
+
+        <div>
+          <!-- ROLE-CONDITIONAL PANEL: editors only. Additive inside the same shell. -->
+          <section class="panel" aria-labelledby="queue-h">
+            <div class="panel__head">
+              <h2 class="panel__title" id="queue-h">Waiting on you as editor</h2>
+              <span class="panel__note">12 in the queue</span>
+              <div class="panel__actions"><a class="btn btn--sm" href="review.html">Open the queue</a></div>
+            </div>
+            <ul class="panel__body panel__body--flush" style="list-style:none;margin:0;padding:0">
+              <li class="entry">
+                <div class="entry__main">
+                  <h3 class="entry__title"><a href="review.html"><span class="igbo">ị̀sị̀ àkwụ́</span></a></h3>
+                  <p class="entry__gloss">palm-fruit head — the whole bunch cut from the tree</p>
+                  <p class="entry__meta"><span>Word</span><span>from Emeka Nwosu</span><span>2 days ago</span></p>
+                </div>
+                <div class="entry__side"><span class="badge badge--pending">Pending</span></div>
+              </li>
+              <li class="entry">
+                <div class="entry__main">
+                  <h3 class="entry__title"><a href="review.html"><span class="igbo">Chidimma</span></a></h3>
+                  <p class="entry__gloss">God is good — personal name, feminine</p>
+                  <p class="entry__meta"><span>Name</span><span>from Adaeze Okeke</span><span>3 days ago</span></p>
+                </div>
+                <div class="entry__side"><span class="badge badge--pending">Pending</span></div>
+              </li>
+              <li class="entry">
+                <div class="entry__main">
+                  <h3 class="entry__title"><a href="review.html"><span class="igbo">Onye ụjọ adịghị amụ nwa</span></a></h3>
+                  <p class="entry__gloss">A coward does not raise a child</p>
+                  <p class="entry__meta"><span>Proverb</span><span>from Uchenna Eze</span><span>5 days ago</span></p>
+                </div>
+                <div class="entry__side"><span class="badge badge--pending">Pending</span></div>
+              </li>
+            </ul>
+            <div class="panel__foot"><a href="review.html">See all 12</a></div>
+          </section>
+
+          <section class="panel" aria-labelledby="recent-h">
+            <div class="panel__head">
+              <h2 class="panel__title" id="recent-h">What became of your last entries</h2>
+              <div class="panel__actions"><a class="btn btn--sm" href="contribute-submissions.html">Full list</a></div>
+            </div>
+            <ul class="panel__body panel__body--flush" style="list-style:none;margin:0;padding:0">
+              <li class="entry">
+                <div class="entry__main">
+                  <h3 class="entry__title"><span class="igbo">ọ̀gụ̀gụ̀</span></h3>
+                  <p class="entry__gloss">reading; the act of counting</p>
+                  <p class="entry__meta"><span>Word</span><span>Accepted by Chidi Anyaso</span><span>yesterday</span></p>
+                </div>
+                <div class="entry__side"><span class="badge badge--accepted">Accepted</span></div>
+              </li>
+              <li class="entry">
+                <div class="entry__main">
+                  <h3 class="entry__title"><span class="igbo">Ọ̀gị̀dị̀ ǹkwọ́</span></h3>
+                  <p class="entry__gloss">Clan — Anambra, Idemili North</p>
+                  <p class="entry__meta"><span>Clan</span><span>Sent 4 days ago</span></p>
+                </div>
+                <div class="entry__side"><span class="badge badge--pending">Pending</span></div>
+              </li>
+              <li class="entry">
+                <div class="entry__main">
+                  <h3 class="entry__title"><span class="igbo">ńnụ́nụ́ ọ̀chị̀chà</span></h3>
+                  <p class="entry__gloss">refused — “Sense is already recorded under <span class="igbo">nnụnụ</span>; add it as a variant instead.”</p>
+                  <p class="entry__meta"><span>Word</span><span>Chidi Anyaso</span><span>6 days ago</span></p>
+                </div>
+                <div class="entry__side">
+                  <span class="badge badge--refused">Refused</span>
+                  <a class="btn btn--sm" href="contribute-word.html">Edit and resend</a>
+                </div>
+              </li>
+            </ul>
+          </section>
+        </div>
+
+        <aside>
+          <!-- ONE-OFF: the standing panel. Its meter is COMPONENT .meter -->
+          <section class="panel" aria-labelledby="standing-h">
+            <div class="panel__head"><h2 class="panel__title" id="standing-h">Your standing</h2></div>
+            <div class="panel__body">
+              <p class="u-sm u-muted" style="margin-top:0">38 sent in total, across five kinds of entry.</p>
+              <div class="meter" role="img" aria-label="29 accepted, 6 pending, 3 refused of 38 submissions">
+                <div style="display:flex;height:100%">
+                  <div class="meter__fill meter__fill--accepted" style="width:76%"></div>
+                  <div class="meter__fill meter__fill--pending" style="width:16%"></div>
+                  <div class="meter__fill meter__fill--refused" style="width:8%"></div>
+                </div>
+              </div>
+              <p class="meter-legend">
+                <span><span class="meter-legend__dot" style="background:var(--green)"></span>29 accepted</span>
+                <span><span class="meter-legend__dot" style="background:var(--ochre)"></span>6 pending</span>
+                <span><span class="meter-legend__dot" style="background:var(--red)"></span>3 refused</span>
+              </p>
+              <dl class="pairs u-mt">
+                <dt>Words</dt><dd>21</dd>
+                <dt>Names</dt><dd>9</dd>
+                <dt>Proverbs</dt><dd>5</dd>
+                <dt>Clans</dt><dd>2</dd>
+                <dt>Dialects</dt><dd>1</dd>
+                <dt>Recordings</dt><dd class="u-faint">none yet</dd>
+              </dl>
+            </div>
+            <div class="panel__foot"><a href="#">Your public profile</a></div>
+          </section>
+
+          <section class="panel" aria-labelledby="start-h">
+            <div class="panel__head"><h2 class="panel__title" id="start-h">Start something</h2></div>
+            <div class="panel__body">
+              <p class="u-sm u-muted" style="margin-top:0">Each of these is a short, guided task.</p>
+              <div class="u-flex">
+                <a class="btn btn--sm" href="contribute-word.html">Word</a>
+                <a class="btn btn--sm" href="contribute-word.html">Name</a>
+                <a class="btn btn--sm" href="contribute-word.html">Proverb</a>
+                <a class="btn btn--sm" href="contribute-word.html">Clan</a>
+                <a class="btn btn--sm" href="contribute-word.html">Dialect</a>
+                <a class="btn btn--sm" href="contribute-word.html">Recording</a>
+              </div>
+            </div>
+          </section>
+        </aside>
+
+      </div>
+
+    </main>
+  </div>
+</div>
+</body>
+</html>
