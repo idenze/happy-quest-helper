@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Users — Ozituma administration</title>
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="../styles/dashboard.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="shell shell--admin">
+  <nav class="sidenav" aria-label="Administration">
+    <a class="sidenav__brand" href="../index.html">
+      <span class="sidenav__mark">Ọzịtụma</span>
+      <span class="sidenav__context">Admin</span>
+    </a>
+    <ul class="sidenav__list">
+      <li><a class="sidenav__link" href="admin-dashboard.html">Dashboard</a></li>
+    </ul>
+    <details class="sidenav__group" open>
+      <summary>The record</summary>
+      <ul class="sidenav__list">
+        <li><a class="sidenav__link" href="#">Words <span class="sidenav__count">14,208</span></a></li>
+        <li><a class="sidenav__link" href="#">Names <span class="sidenav__count">3,117</span></a></li>
+        <li><a class="sidenav__link" href="#">Clans <span class="sidenav__count">612</span></a></li>
+        <li><a class="sidenav__link" href="#">Proverbs <span class="sidenav__count">1,044</span></a></li>
+        <li><a class="sidenav__link" href="#">Recordings <span class="sidenav__count">287</span></a></li>
+        <li><a class="sidenav__link" href="#">Submissions <span class="sidenav__count">12</span></a></li>
+      </ul>
+    </details>
+    <details class="sidenav__group" open>
+      <summary>People</summary>
+      <ul class="sidenav__list">
+        <li><a class="sidenav__link" href="admin-users.html" aria-current="page">Users <span class="sidenav__count">486</span></a></li>
+        <li><a class="sidenav__link" href="#">Add account</a></li>
+        <li><a class="sidenav__link sidenav__link--review" href="review.html">Review queue <span class="sidenav__count">12</span></a></li>
+      </ul>
+    </details>
+    <details class="sidenav__group">
+      <summary>The site</summary>
+      <ul class="sidenav__list">
+        <li><a class="sidenav__link" href="admin-appearance.html">Appearance</a></li>
+        <li><a class="sidenav__link" href="#">Front page layout</a></li>
+        <li><a class="sidenav__link" href="#">Advertisements</a></li>
+        <li><a class="sidenav__link" href="admin-analytics.html">Analytics</a></li>
+        <li><a class="sidenav__link" href="#">Settings</a></li>
+        <li><a class="sidenav__link" href="#">Learn subdomain</a></li>
+        <li><a class="sidenav__link" href="#">Record settings</a></li>
+      </ul>
+    </details>
+    <div class="sidenav__foot">
+      <span class="avatar" aria-hidden="true">CA</span>
+      <span class="sidenav__who">
+        <span class="sidenav__name">Chidi Anyaso</span>
+        <span class="sidenav__role">Administrator</span>
+      </span>
+    </div>
+  </nav>
+
+  <div class="shell__main">
+    <div class="topbar">
+      <span class="topbar__title">Users</span>
+      <div class="topbar__spacer"></div>
+      <a class="btn btn--sm btn--primary" href="#">Add account</a>
+    </div>
+
+    <main class="shell__content" id="main">
+
+      <header class="page-header">
+        <div class="page-header__text">
+          <p class="page-header__kicker">486 accounts · 7 editors · 2 administrators</p>
+          <h1 class="page-header__title">Users</h1>
+        </div>
+      </header>
+
+      <div class="notice notice--warning">
+        <div>
+          <p class="notice__title">4 accounts are waiting for a role</p>
+          <p class="notice__body">They can sign in but cannot contribute until a role is set. They are marked below.</p>
+        </div>
+      </div>
+
+      <section class="panel" aria-labelledby="users-h">
+        <div class="panel__head">
+          <h2 class="panel__title" id="users-h">All accounts</h2>
+          <span class="panel__note">sorted by contributions</span>
+        </div>
+
+        <form class="filters" method="get" action="/admin/users" role="search">
+          <div class="field">
+            <label class="field__label" for="uq">Name or email</label>
+            <input id="uq" name="q" type="text">
+          </div>
+          <div class="field">
+            <label class="field__label" for="urole">Role</label>
+            <select id="urole" name="role">
+              <option value="">Any role</option>
+              <option value="none">No role yet</option>
+              <option value="contributor">Contributor</option>
+              <option value="editor">Editor</option>
+              <option value="admin">Administrator</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="field__label" for="ustatus">Status</label>
+            <select id="ustatus" name="status">
+              <option value="">Any</option>
+              <option value="active">Active</option>
+              <option value="suspended">Suspended</option>
+            </select>
+          </div>
+          <button class="btn" type="submit">Filter</button>
+          <a class="btn btn--quiet" href="/admin/users">Clear</a>
+        </form>
+
+        <!-- Bulk actions: checkboxes inside a normal POST form. No JavaScript.
+             Column sort is a link carrying ?sort= — the server does the sorting. -->
+        <form method="post" action="/api/users/bulk">
+          <div class="bulkbar">
+            <span class="bulkbar__label">With the ticked accounts:</span>
+            <button class="btn btn--sm" type="submit" name="action" value="role_contributor">Make contributor</button>
+            <button class="btn btn--sm" type="submit" name="action" value="role_editor">Make editor</button>
+            <button class="btn btn--sm" type="submit" name="action" value="suspend">Suspend</button>
+            <button class="btn btn--sm btn--danger" type="submit" name="action" value="delete">Delete</button>
+          </div>
+
+          <div class="table-wrap">
+            <table class="table">
+              <caption class="visually-hidden">User accounts with role, status and contribution counts</caption>
+              <thead>
+                <tr>
+                  <th scope="col" class="table__select"><label class="visually-hidden" for="all">Select all</label><input id="all" type="checkbox" name="all" value="1"></th>
+                  <th scope="col"><a class="table__sort" href="?sort=name">Person</a></th>
+                  <th scope="col"><a class="table__sort" href="?sort=role">Role</a></th>
+                  <th scope="col">Status</th>
+                  <th scope="col" class="u-right"><a class="table__sort" href="?sort=accepted" aria-sort="descending">Accepted</a></th>
+                  <th scope="col" class="u-right">Pending</th>
+                  <th scope="col"><a class="table__sort" href="?sort=joined">Joined</a></th>
+                  <th scope="col"><span class="visually-hidden">Actions</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><label class="visually-hidden" for="u1">Select Emeka Nwosu</label><input id="u1" type="checkbox" name="ids[]" value="1"></td>
+                  <td><span class="u-flex"><span class="avatar avatar--sm" aria-hidden="true">EN</span><span><a href="#">Emeka Nwosu</a><br><span class="u-xs u-faint">emeka@example.com</span></span></span></td>
+                  <td><span class="badge badge--role">Contributor</span></td>
+                  <td><span class="u-sm">Active</span></td>
+                  <td class="table__num">41</td>
+                  <td class="table__num">3</td>
+                  <td class="u-sm u-faint">Mar 2024</td>
+                  <td><span class="table__actions"><a class="btn btn--sm" href="#">Edit</a></span></td>
+                </tr>
+                <tr>
+                  <td><label class="visually-hidden" for="u2">Select Nkechi Obiora</label><input id="u2" type="checkbox" name="ids[]" value="2"></td>
+                  <td><span class="u-flex"><span class="avatar avatar--sm" aria-hidden="true">NO</span><span><a href="#">Nkechi Obiora</a><br><span class="u-xs u-faint">nkechi@example.com</span></span></span></td>
+                  <td><span class="badge badge--role">Editor</span></td>
+                  <td><span class="u-sm">Active</span></td>
+                  <td class="table__num">29</td>
+                  <td class="table__num">6</td>
+                  <td class="u-sm u-faint">Jan 2023</td>
+                  <td><span class="table__actions"><a class="btn btn--sm" href="#">Edit</a></span></td>
+                </tr>
+                <tr class="is-attention">
+                  <td><label class="visually-hidden" for="u3">Select Ifeoma Udeh</label><input id="u3" type="checkbox" name="ids[]" value="3"></td>
+                  <td><span class="u-flex"><span class="avatar avatar--sm" aria-hidden="true">IU</span><span><a href="#">Ifeoma Udeh</a><br><span class="u-xs u-faint">ifeoma@example.com</span></span></span></td>
+                  <td><span class="badge badge--pending">No role yet</span></td>
+                  <td><span class="u-sm">Active</span></td>
+                  <td class="table__num u-faint">0</td>
+                  <td class="table__num u-faint">0</td>
+                  <td class="u-sm u-faint">4 days ago</td>
+                  <td><span class="table__actions"><a class="btn btn--sm btn--primary" href="#">Set role</a></span></td>
+                </tr>
+                <tr class="is-hidden">
+                  <td><label class="visually-hidden" for="u4">Select Obiora Mba</label><input id="u4" type="checkbox" name="ids[]" value="4"></td>
+                  <td><span class="u-flex"><span class="avatar avatar--sm" aria-hidden="true">OM</span><span><a href="#">Obiora Mba</a><br><span class="u-xs u-faint">obiora@example.com</span></span></span></td>
+                  <td><span class="badge badge--role">Contributor</span></td>
+                  <td><span class="badge badge--hidden">Suspended</span></td>
+                  <td class="table__num">12</td>
+                  <td class="table__num u-faint">0</td>
+                  <td class="u-sm u-faint">Aug 2022</td>
+                  <td><span class="table__actions"><a class="btn btn--sm" href="#">Edit</a></span></td>
+                </tr>
+                <tr>
+                  <td><label class="visually-hidden" for="u5">Select Chidi Anyaso</label><input id="u5" type="checkbox" name="ids[]" value="5"></td>
+                  <td><span class="u-flex"><span class="avatar avatar--sm" aria-hidden="true">CA</span><span><a href="#">Chidi Anyaso</a><br><span class="u-xs u-faint">chidi@example.com</span></span></span></td>
+                  <td><span class="badge badge--role">Administrator</span></td>
+                  <td><span class="u-sm">Active</span></td>
+                  <td class="table__num">54</td>
+                  <td class="table__num u-faint">0</td>
+                  <td class="u-sm u-faint">Nov 2021</td>
+                  <td><span class="table__actions"><a class="btn btn--sm" href="#">Edit</a></span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="panel__foot">
+            <span>Showing 1–5 of 486</span>
+            <nav class="pagination" aria-label="User pages">
+              <a class="pagination__link" href="#" aria-disabled="true">Previous</a>
+              <a class="pagination__link" href="#" aria-current="page">1</a>
+              <a class="pagination__link" href="#">2</a>
+              <a class="pagination__link" href="#">3</a>
+              <a class="pagination__link" href="#">98</a>
+              <a class="pagination__link" href="#">Next</a>
+            </nav>
+          </div>
+        </form>
+      </section>
+
+      <section class="panel" aria-labelledby="ue-h">
+        <div class="panel__head"><h2 class="panel__title" id="ue-h">Empty state (no account matches the filter)</h2></div>
+        <div class="empty">
+          <p class="empty__title">No account matches that filter</p>
+          <p class="empty__body">Nothing is wrong — there is simply no one here with that role and status.</p>
+          <a class="btn" href="/admin/users">Clear the filter</a>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+</body>
+</html>
