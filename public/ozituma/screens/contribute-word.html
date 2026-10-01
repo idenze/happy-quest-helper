@@ -79,7 +79,7 @@
         <div>
           <!-- CONSTRAINT: plain HTML post to the server's own action, field
                names unchanged. Usable with JavaScript disabled. -->
-          <form method="post" action="/api/words" enctype="multipart/form-data">
+          <form id="word-form" method="post" action="/api/words" enctype="multipart/form-data">
 
             <fieldset class="fieldgroup">
               <legend class="fieldgroup__legend">
@@ -224,7 +224,7 @@
             <div class="panel__head"><h2 class="panel__title" id="ed-h">As an editor</h2></div>
             <div class="panel__body">
               <p class="u-sm u-muted" style="margin-top:0">You may publish this entry without review.</p>
-              <button class="btn btn--block" type="submit" form="" name="intent" value="publish">Publish straight away</button>
+              <button class="btn btn--block" type="submit" form="word-form" name="intent" value="publish">Publish straight away</button>
             </div>
           </section>
         </aside>

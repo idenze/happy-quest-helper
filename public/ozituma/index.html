@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ozituma dashboards — design prototype</title>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="styles/dashboard.css">
+<style>
+  /* ONE-OFF: this contents page is not part of the application. */
+  .cover { max-width: 60rem; margin: 0 auto; padding: var(--s-7) var(--s-5); }
+  .cover h1 { font-size: var(--t-2xl); margin-bottom: var(--s-3); }
+  .cover p { max-width: 62ch; color: var(--ink-soft); }
+  .screens { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--s-3); grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .screens a { display: block; padding: var(--s-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper); text-decoration: none; color: var(--ink); }
+  .screens a:hover { border-color: var(--accent); }
+  .screens strong { display: block; font-family: var(--font-serif); }
+  .screens span { font-size: var(--t-sm); color: var(--ink-soft); }
+  @media (max-width: 52rem) { .screens { grid-template-columns: minmax(0, 1fr); } }
+</style>
+</head>
+<body>
+<main class="cover">
+
+  <p class="page-header__kicker">Design prototype · plain HTML and CSS, no build step</p>
+  <h1>The Ọzịtụma dashboards</h1>
+  <p>
+    Two dashboards for three roles. <strong>A</strong> is the single workspace shared by contributors
+    and editors — the review queue is extra authority inside the same shell, never a second product.
+    <strong>B</strong> is the administrator's instrument panel. They share one type scale, one spacing
+    rhythm and one colour semantic; they differ in density and navigation.
+  </p>
+  <p>
+    Every screen is server-rendered markup: plain <code>method="post"</code> forms to the existing
+    API routes, original field names untouched, <code>&lt;details&gt;</code> for every disclosure,
+    and nothing that needs JavaScript to be usable. All colour is derived from the six
+    admin-overridable custom properties, so a re-themed palette carries through, and no layout is
+    measured against a fixed page width.
+  </p>
+
+  <h2 class="page-header__kicker u-mt" style="margin-bottom:var(--s-3)">Dashboard A — contributor / editor</h2>
+  <ul class="screens">
+    <li><a href="screens/contribute-overview.html"><strong>Overview</strong><span>/contribute — standing, decisions, the editor queue</span></a></li>
+    <li><a href="screens/contribute-word.html"><strong>Add a word</strong><span>/contribute/word — the form, in full, with its error state</span></a></li>
+    <li><a href="screens/contribute-submissions.html"><strong>Your submissions</strong><span>/contribute/submissions — states, reasons, empty state</span></a></li>
+    <li><a href="screens/review.html"><strong>Review queue</strong><span>/review — editor and admin only</span></a></li>
+  </ul>
+
+  <h2 class="page-header__kicker u-mt" style="margin-bottom:var(--s-3)">Dashboard B — administrator</h2>
+  <ul class="screens">
+    <li><a href="screens/admin-dashboard.html"><strong>Dashboard</strong><span>/admin — what the record holds, what needs attention</span></a></li>
+    <li><a href="screens/admin-users.html"><strong>Users</strong><span>/admin/users — sort, filter, bulk actions</span></a></li>
+    <li><a href="screens/admin-appearance.html"><strong>Appearance</strong><span>/admin/appearance — six colours, logo, width, menu order</span></a></li>
+    <li><a href="screens/admin-analytics.html"><strong>Analytics</strong><span>/admin/analytics — both sites, side by side</span></a></li>
+  </ul>
+
+  <h2 class="page-header__kicker u-mt" style="margin-bottom:var(--s-3)">The rest of the deliverable</h2>
+  <ul class="screens">
+    <li><a href="tokens.css"><strong>tokens.css</strong><span>the custom properties on their own, in oklch()</span></a></li>
+    <li><a href="styles/dashboard.css"><strong>styles/dashboard.css</strong><span>the component layer, plain CSS</span></a></li>
+    <li><a href="NOTES.md"><strong>NOTES.md</strong><span>rationale, component inventory, every departure</span></a></li>
+  </ul>
+
+  <p class="u-sm u-faint u-mt">
+    Narrow your window to 375px to see the mobile layout: both dashboards collapse to one column
+    and the navigation becomes disclosures — still without JavaScript.
+  </p>
+</main>
+</body>
+</html>
