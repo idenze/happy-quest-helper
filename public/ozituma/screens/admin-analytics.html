@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Analytics — Ozituma administration</title>
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="../styles/dashboard.css">
+<style>
+  /* ONE-OFF (this screen only): the two-site comparison column and the
+     CSS-only bar chart. Bar heights are inline because they are live values. */
+  .sites { display: grid; gap: var(--s-4); grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+  .chart { display: flex; align-items: flex-end; gap: 3px; height: 7rem; padding-top: var(--s-2); }
+  .chart__bar { flex: 1; background: color-mix(in oklab, var(--accent) 55%, var(--paper)); border-radius: var(--radius-sm) var(--radius-sm) 0 0; min-height: 2px; }
+  .chart__bar--hi { background: var(--accent); }
+  .chart-axis { display: flex; justify-content: space-between; font-size: var(--t-xs); color: var(--ink-faint); margin-top: var(--s-1); }
+  @media (max-width: 52rem) { .sites { grid-template-columns: minmax(0, 1fr); } }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="shell shell--admin">
+  <nav class="sidenav" aria-label="Administration">
+    <a class="sidenav__brand" href="../index.html">
+      <span class="sidenav__mark">Ọzịtụma</span>
+      <span class="sidenav__context">Admin</span>
+    </a>
+    <ul class="sidenav__list">
+      <li><a class="sidenav__link" href="admin-dashboard.html">Dashboard</a></li>
+    </ul>
+    <details class="sidenav__group">
+      <summary>The record</summary>
+      <ul class="sidenav__list">
+        <li><a class="sidenav__link" href="#">Words <span class="sidenav__count">14,208</span></a></li>
+        <li><a class="sidenav__link" href="#">Names <span class="sidenav__count">3,117</span></a></li>
+        <li><a class="sidenav__link" href="#">Clans <span class="sidenav__count">612</span></a></li>
+        <li><a class="sidenav__link" href="#">Proverbs <span class="sidenav__count">1,044</span></a></li>
+      </ul>
+    </details>
+    <details class="sidenav__group">
+      <summary>People</summary>
+      <ul class="sidenav__list">
+        <li><a class="sidenav__link" href="admin-users.html">Users <span class="sidenav__count">486</span></a></li>
+        <li><a class="sidenav__link sidenav__link--review" href="review.html">Review queue <span class="sidenav__count">12</span></a></li>
+      </ul>
+    </details>
+    <details class="sidenav__group" open>
+      <summary>The site</summary>
+      <ul class="sidenav__list">
+        <li><a class="sidenav__link" href="admin-appearance.html">Appearance</a></li>
+        <li><a class="sidenav__link" href="#">Front page layout</a></li>
+        <li><a class="sidenav__link" href="#">Advertisements</a></li>
+        <li><a class="sidenav__link" href="admin-analytics.html" aria-current="page">Analytics</a></li>
+        <li><a class="sidenav__link" href="#">Settings</a></li>
+        <li><a class="sidenav__link" href="#">Learn subdomain</a></li>
+        <li><a class="sidenav__link" href="#">Record settings</a></li>
+      </ul>
+    </details>
+    <div class="sidenav__foot">
+      <span class="avatar" aria-hidden="true">CA</span>
+      <span class="sidenav__who">
+        <span class="sidenav__name">Chidi Anyaso</span>
+        <span class="sidenav__role">Administrator</span>
+      </span>
+    </div>
+  </nav>
+
+  <div class="shell__main">
+    <div class="topbar">
+      <span class="topbar__title">Analytics</span>
+      <div class="topbar__spacer"></div>
+      <form method="get" action="/admin/analytics" class="topbar__search">
+        <label class="visually-hidden" for="range">Period</label>
+        <select id="range" name="range" style="font:inherit;font-size:var(--t-sm);padding:0.3rem var(--s-3);border:1px solid var(--line);border-radius:var(--radius);background:var(--paper);color:var(--ink)">
+          <option value="7">Last 7 days</option>
+          <option value="30" selected>Last 30 days</option>
+          <option value="90">Last 90 days</option>
+        </select>
+        <button class="btn btn--sm" type="submit">Apply</button>
+      </form>
+    </div>
+
+    <main class="shell__content" id="main">
+
+      <header class="page-header">
+        <div class="page-header__text">
+          <p class="page-header__kicker">Last 30 days · from Google Analytics</p>
+          <h1 class="page-header__title">Traffic</h1>
+        </div>
+      </header>
+
+      <div class="sites">
+
+        <section class="panel" aria-labelledby="site1-h">
+          <div class="panel__head">
+            <h2 class="panel__title" id="site1-h">ozituma.com</h2>
+            <span class="panel__note">the dictionary</span>
+          </div>
+          <div class="panel__body">
+            <div class="grid grid--3">
+              <div class="stat" style="border:0;padding:0"><span class="stat__label">Visits</span><span class="stat__value u-mono">48,312</span><span class="stat__meta">+6% on the month before</span></div>
+              <div class="stat" style="border:0;padding:0"><span class="stat__label">People</span><span class="stat__value u-mono">21,904</span><span class="stat__meta">+4%</span></div>
+              <div class="stat" style="border:0;padding:0"><span class="stat__label">Searches</span><span class="stat__value u-mono">33,180</span><span class="stat__meta">+9%</span></div>
+            </div>
+
+            <div class="chart" role="img" aria-label="Daily visits over 30 days, ranging from about 1,100 to about 2,400">
+              <div class="chart__bar" style="height:48%"></div><div class="chart__bar" style="height:55%"></div>
+              <div class="chart__bar" style="height:51%"></div><div class="chart__bar" style="height:62%"></div>
+              <div class="chart__bar" style="height:70%"></div><div class="chart__bar" style="height:44%"></div>
+              <div class="chart__bar" style="height:39%"></div><div class="chart__bar" style="height:58%"></div>
+              <div class="chart__bar" style="height:66%"></div><div class="chart__bar" style="height:72%"></div>
+              <div class="chart__bar chart__bar--hi" style="height:100%"></div><div class="chart__bar" style="height:81%"></div>
+              <div class="chart__bar" style="height:63%"></div><div class="chart__bar" style="height:57%"></div>
+              <div class="chart__bar" style="height:60%"></div><div class="chart__bar" style="height:68%"></div>
+              <div class="chart__bar" style="height:74%"></div><div class="chart__bar" style="height:52%"></div>
+              <div class="chart__bar" style="height:47%"></div><div class="chart__bar" style="height:64%"></div>
+              <div class="chart__bar" style="height:71%"></div><div class="chart__bar" style="height:69%"></div>
+              <div class="chart__bar" style="height:58%"></div><div class="chart__bar" style="height:49%"></div>
+              <div class="chart__bar" style="height:55%"></div><div class="chart__bar" style="height:76%"></div>
+              <div class="chart__bar" style="height:83%"></div><div class="chart__bar" style="height:61%"></div>
+              <div class="chart__bar" style="height:54%"></div><div class="chart__bar" style="height:59%"></div>
+            </div>
+            <p class="chart-axis"><span>1 Sep</span><span>15 Sep</span><span>30 Sep</span></p>
+          </div>
+
+          <div class="table-wrap">
+            <table class="table">
+              <caption>Most-read pages</caption>
+              <thead><tr><th scope="col">Page</th><th scope="col" class="u-right">Views</th></tr></thead>
+              <tbody>
+                <tr><td><span class="igbo">ọ̀gụ̀gụ̀</span> <span class="u-faint u-xs">/word/ogugu</span></td><td class="table__num">3,117</td></tr>
+                <tr><td><span class="igbo">Chidimma</span> <span class="u-faint u-xs">/name/chidimma</span></td><td class="table__num">2,884</td></tr>
+                <tr><td>Proverbs index <span class="u-faint u-xs">/proverbs</span></td><td class="table__num">2,019</td></tr>
+                <tr><td><span class="igbo">Ọ̀gị̀dị̀</span> <span class="u-faint u-xs">/clan/ogidi</span></td><td class="table__num">1,452</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="panel" aria-labelledby="site2-h">
+          <div class="panel__head">
+            <h2 class="panel__title" id="site2-h">learn.ozituma.com</h2>
+            <span class="panel__note">the lessons</span>
+          </div>
+          <div class="panel__body">
+            <div class="grid grid--3">
+              <div class="stat" style="border:0;padding:0"><span class="stat__label">Visits</span><span class="stat__value u-mono">9,744</span><span class="stat__meta">−2% on the month before</span></div>
+              <div class="stat" style="border:0;padding:0"><span class="stat__label">People</span><span class="stat__value u-mono">4,610</span><span class="stat__meta">+1%</span></div>
+              <div class="stat stat--zero" style="border:0;padding:0"><span class="stat__label">Searches</span><span class="stat__value u-mono">0</span><span class="stat__meta">no search on this site</span></div>
+            </div>
+
+            <div class="chart" role="img" aria-label="Daily visits over 30 days, ranging from about 180 to about 480">
+              <div class="chart__bar" style="height:40%"></div><div class="chart__bar" style="height:44%"></div>
+              <div class="chart__bar" style="height:38%"></div><div class="chart__bar" style="height:52%"></div>
+              <div class="chart__bar" style="height:49%"></div><div class="chart__bar" style="height:31%"></div>
+              <div class="chart__bar" style="height:28%"></div><div class="chart__bar" style="height:45%"></div>
+              <div class="chart__bar" style="height:53%"></div><div class="chart__bar" style="height:57%"></div>
+              <div class="chart__bar chart__bar--hi" style="height:88%"></div><div class="chart__bar" style="height:64%"></div>
+              <div class="chart__bar" style="height:51%"></div><div class="chart__bar" style="height:43%"></div>
+              <div class="chart__bar" style="height:46%"></div><div class="chart__bar" style="height:50%"></div>
+              <div class="chart__bar" style="height:58%"></div><div class="chart__bar" style="height:37%"></div>
+              <div class="chart__bar" style="height:33%"></div><div class="chart__bar" style="height:48%"></div>
+              <div class="chart__bar" style="height:55%"></div><div class="chart__bar" style="height:52%"></div>
+              <div class="chart__bar" style="height:41%"></div><div class="chart__bar" style="height:35%"></div>
+              <div class="chart__bar" style="height:39%"></div><div class="chart__bar" style="height:56%"></div>
+              <div class="chart__bar" style="height:61%"></div><div class="chart__bar" style="height:47%"></div>
+              <div class="chart__bar" style="height:42%"></div><div class="chart__bar" style="height:45%"></div>
+            </div>
+            <p class="chart-axis"><span>1 Sep</span><span>15 Sep</span><span>30 Sep</span></p>
+          </div>
+
+          <div class="table-wrap">
+            <table class="table">
+              <caption>Most-read pages</caption>
+              <thead><tr><th scope="col">Page</th><th scope="col" class="u-right">Views</th></tr></thead>
+              <tbody>
+                <tr><td>Greetings <span class="u-faint u-xs">/lesson/greetings</span></td><td class="table__num">1,208</td></tr>
+                <tr><td>Tone marks <span class="u-faint u-xs">/lesson/tone</span></td><td class="table__num">964</td></tr>
+                <tr><td>Counting <span class="u-faint u-xs">/lesson/counting</span></td><td class="table__num">702</td></tr>
+                <tr><td>Course index <span class="u-faint u-xs">/</span></td><td class="table__num">688</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+      <!-- The honest not-configured state: analytics can legitimately be empty. -->
+      <section class="panel" aria-labelledby="an-h">
+        <div class="panel__head"><h2 class="panel__title" id="an-h">Empty state (no analytics id set)</h2></div>
+        <div class="empty">
+          <p class="empty__title">No traffic figures yet</p>
+          <p class="empty__body">
+            Ọzịtụma has no Google Analytics id saved, so there is nothing to report.
+            Add one and figures appear from that day onward — history is not backfilled.
+          </p>
+          <a class="btn btn--primary" href="#">Add the analytics id in Settings</a>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+</body>
+</html>
